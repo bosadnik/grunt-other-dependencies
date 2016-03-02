@@ -12,11 +12,19 @@ module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
+  // var cwd = process.cwd();
+  // console.log(__dirname);
+  // process.chdir(__dirname);
+
+  var cwd = process.cwd();
+  process.chdir(__dirname);
+  process.chdir("..");
   grunt.loadNpmTasks('grunt-downloadfile');
   grunt.loadNpmTasks('grunt-zip');
+  process.chdir(cwd);
+
   grunt.loadNpmTasks('grunt-contrib-clean');
-
-
+//  //process.chdir(cwd);
 
   grunt.registerMultiTask('other_dependencies', 'Additional denepdencies for project downloaded direcly as zip and unpacked to defiened folder', function() {
 
@@ -65,7 +73,7 @@ module.exports = function(grunt) {
     grunt.task.run('clean:tmp');
 
     
-    var options = this.options({
+/*    var options = this.options({
       punctuation: '.',
       separator: ', '
     });
@@ -95,6 +103,8 @@ module.exports = function(grunt) {
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
     });
+*/
+
   });
 
 };
