@@ -34,7 +34,7 @@ grunt.initConfig({
 ### Usage Examples
 
 #### Default Options
-put dummy configuration into initConfig section
+Put dummy configuration into initConfig section
 
 ```js
 grunt.initConfig({
@@ -44,7 +44,7 @@ grunt.initConfig({
 });
 ```
 #### package.json config
-In youe package.json file, put `other_dependencies' section
+In your package.json file, put `other_dependencies' section
 
 ```js
   
