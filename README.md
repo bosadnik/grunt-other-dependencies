@@ -24,63 +24,86 @@ In your project's Gruntfile, add a section named `other_dependencies` to the dat
 
 ```js
 grunt.initConfig({
-  other_dependencies: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+   other_dependencies: {
+          target: {}       
+        },
 });
 ```
 
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+put dummy configuration into initConfig section
 
 ```js
 grunt.initConfig({
-  other_dependencies: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+   other_dependencies: {
+          target: {}       
+        },
 });
 ```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### package.json config
+In youe package.json file, put `other_dependencies' section
 
 ```js
-grunt.initConfig({
-  other_dependencies: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+  
+  "otherDependecies": [
+    {
+      "name": "test-module-one",
+      "url": "http://www.osadnik.com/download-zip/test-module-one.zip",
+      "destFolder": "other-modules"
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+    
+    {
+      "name": "test-module-two",
+      "url": "http://www.osadnik.com/download-zip/test-module-two.zip",
+      "destFolder": "other-modules"
+    }
+    
+  ],
+
+``` 
+
+
+
+
+
+#### Grunt configuration
+as a separeated task
+```js
+
+    grunt.registerTask('otherDeps', [
+         'other_dependencies',
+        ])
+
 ```
+... or directly binded to  `build` task:
+```js
+
+ grunt.registerTask('build', [
+        // 'test',
+        'other_dependencies',
+        'clean:dist',
+        'useminPrepare',
+        ...
+        ...
+        ]
+      );
+
+```
+then you can just run:
+```js
+grunt otherDeps
+```
+or
+
+then you can just run:
+```js
+grunt build
+```
+
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
